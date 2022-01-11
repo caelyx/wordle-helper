@@ -6,8 +6,12 @@ import re
 
 parser = argparse.ArgumentParser(description="Wordle solver")
 parser.add_argument("green", metavar="green", type=str, help="The known pattern, in regex format.")
-parser.add_argument("yellow", metavar="yellow", type=str, nargs="?", help="Correct letters in the wrong places.")
-parser.add_argument("grey", metavar="grey", type=str, nargs="?", help="Letters which are not in the solution.")
+parser.add_argument(
+    "yellow", metavar="yellow", type=str, nargs="?", help="Correct letters in the wrong places."
+)
+parser.add_argument(
+    "grey", metavar="grey", type=str, nargs="?", help="Letters which are not in the solution."
+)
 args = parser.parse_args()
 
 valid = re.compile(args.green)
