@@ -2,6 +2,7 @@
 """Wordle solver -- works out possible words from a given set of letters."""
 
 import argparse
+import os
 import re
 
 parser = argparse.ArgumentParser(description="Wordle solver")
@@ -16,8 +17,9 @@ args = parser.parse_args()
 
 valid = re.compile(args.green)
 
+dir_path = os.path.abspath(os.path.dirname(__file__))
 wordlist = []
-with open("wordlist.txt", "r") as f:
+with open(dir_path + "/wordlist.txt", "r") as f:
     wordlist = [line.strip() for line in f]
 
 for val in [item for item in wordlist if valid.match(item)]:
