@@ -15,14 +15,13 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-valid = re.compile(args.green)
+green = re.compile(args.green)
 
 dir_path = os.path.abspath(os.path.dirname(__file__))
-wordlist = []
 with open(dir_path + "/wordlist.txt", "r") as f:
-    wordlist = [line.strip() for line in f]
+    wordlist = [line.strip() for line in f if green.match(line.strip())]
 
-for val in [item for item in wordlist if valid.match(item)]:
+for val in wordlist:
     valid = True
     if args.yellow is not None and args.yellow != "-":
         for c in args.yellow:
