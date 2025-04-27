@@ -13,7 +13,7 @@ def search(args):
     dir_path = os.path.abspath(os.path.dirname(__file__))
 
     # Open the word list and filter for words matching the green pattern
-    with open(dir_path + "/wordlist.txt", "r") as f:
+    with open(dir_path + "/wordlist.txt", "r", encoding="ascii") as f:
         wordlist = [line.strip() for line in f if green.match(line.strip())]
 
     results = []
@@ -45,15 +45,15 @@ def main():
         "green", metavar="green", type=str, help="The known pattern, in regex format."
     )
     parser.add_argument(
-        "yellow", metavar="yellow", type=str, nargs="?", help="Correct letters in the wrong places."
+        "grey", metavar="grey", type=str, nargs="?", help="Letters which are not in the solution."
     )
     parser.add_argument(
-        "grey", metavar="grey", type=str, nargs="?", help="Letters which are not in the solution."
+        "yellow", metavar="yellow", type=str, nargs="?", help="Correct letters in the wrong places."
     )
     args = parser.parse_args()
 
-    for validWord in search(args):
-        print(validWord)
+    for valid_word in search(args):
+        print(valid_word)
 
 
 if __name__ == "__main__":
